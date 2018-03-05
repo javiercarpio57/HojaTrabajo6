@@ -32,7 +32,7 @@ public class Carta {
 
     @Override
     public String toString() {
-        return "Nombre: " + nombre + " -- Tipo: " + tipo;
+        return nombre + " -- " + tipo;
     }
     
     
