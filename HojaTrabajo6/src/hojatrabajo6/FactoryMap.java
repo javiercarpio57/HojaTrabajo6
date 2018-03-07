@@ -12,10 +12,13 @@ public class FactoryMap {
         
         switch(opcion){
             case 1:
+                System.out.println("Eligio utilizar HashMap");
                 return new HashMap();
             case 2:
+                System.out.println("Eligio utilizar TreeMap");
                 return new TreeMap();
             case 3:
+                System.out.println("Eligio utilizar LinkedHashMap");
                 return new LinkedHashMap();    
         }
         
