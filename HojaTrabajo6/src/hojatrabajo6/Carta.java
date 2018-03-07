@@ -13,7 +13,7 @@ import java.util.Map.Entry;
  *
  * @author javie
  */
-public class Carta implements Comparable<Carta>{
+public class Carta {
     private String nombre;
     private String tipo;
 
@@ -83,7 +83,7 @@ public class Carta implements Comparable<Carta>{
         int monstruo = 0, hechizo = 0, trampa = 0; 
         for(Carta c: carta){
             cont++;
-            cartas += cont + ". " + c.getNombre() + " --- " + c.getTipo() + "\n";
+            cartas += cont + ". " + c.toString() + "\n";
             
             if(c.getTipo().equals("Monstruo")){
                 monstruo++;
@@ -106,33 +106,98 @@ public class Carta implements Comparable<Carta>{
         return cartas;
     }
 
-    public void ordenarMazo(ArrayList<Carta> carta){
-        Carta[] cartas = new Carta[carta.size()];
+    public String ordenarMazo(ArrayList<Carta> personal){
+        Collections.sort(personal, (Carta o1, Carta o2) -> o1.getTipo().compareTo(o2.getTipo()));
+        String a = "";
         
-        for(int i = 0; i < carta.size(); i++){
-            cartas[i] = carta.get(i);
+        Carta[] cartas = new Carta[personal.size()];
+        for(int i = 0; i < personal.size(); i++){
+            cartas[i] = personal.get(i);
         }
         
-        Arrays.sort(cartas);
-        
-        for(Carta c: cartas){
-            System.out.println(c.toString());
-        }
-        
-        //return contarCartas(carta);
+        return enlistarArray(cartas);
     }
     
-    @Override
-    public int compareTo(Carta o) {
-        Carta cartaTemp = (Carta)o;
-        
-        if(tipo.equals(o.tipo)){
-            return 0;
-        }else{
-            return -1;
+    public String ordenarColeccion(Map<Integer, Carta> carta){
+        Carta[] cartas = new Carta[carta.size()];
+        ArrayList<Carta> ccc = new ArrayList<>();
+        for (Entry<Integer, Carta> c : carta.entrySet()){
+            Carta valor = c.getValue();
+            
+            Carta c1 = new Carta(valor.getNombre(), valor.getTipo());
+            
+            ccc.add(c1);
         }
         
+        Collections.sort(ccc, (Carta o1, Carta o2) -> o1.getTipo().compareTo(o2.getTipo()));
+        
+        for(int i = 0; i < ccc.size(); i++){
+            cartas[i] = ccc.get(i);
+        }
+        
+        return ordenarMazo(ccc);
     }
+    
+    public String enlistarArray(Carta[] carta){
+        String cartas = "";
+        int cont = 0;
+        int monstruo = 0, hechizo = 0, trampa = 0; 
+        for(Carta c: carta){
+            cont++;
+            cartas += cont + ". " + c.toString() + "\n";
+            
+            switch (c.getTipo()) {
+                case "Monstruo":
+                    monstruo++;
+                    break;
+                case "Hechizo":
+                    hechizo++;
+                    break;
+                case "Trampa":
+                    trampa++;
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+        if(cartas.isEmpty()){
+            return "No tiene cartas en su mazo";
+        }else{
+            cartas += "\n--Se tienen:"
+                + "\nMonstruos: " + monstruo
+                + "\nHechizos: " + hechizo
+                + "\nTrampas: " + trampa;
+        }                
+        
+        return cartas;
+    }
+    
+    public String mostrarTipo(String eleccion, Map<Integer, Carta> map){
+        String info = "";
+        for (Entry<Integer, Carta> carta : map.entrySet()){
+            Carta valor = carta.getValue();
+            if(valor.getNombre().equals(eleccion)){
+                String nom = valor.getNombre();
+                String tipo = valor.getTipo();
+                info = nom + " es una carta de tipo: " + tipo;
+            }
+        }
+        
+        return info;
+    }
+//    
+//    @Override
+//    public int compareTo(Carta o) {
+//        Carta cartaTemp = (Carta)o;
+//        
+//        if(this.tipo.equals(o.tipo)){
+//            return tipo.compareTo(o.tipo);
+//        }else{
+//            return 
+//        }
+//        
+//    }
 
     
     

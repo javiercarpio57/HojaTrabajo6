@@ -3,6 +3,8 @@ package hojatrabajo6;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
@@ -61,14 +63,16 @@ public class HojaTrabajo6 {
         int b = 1;
         
         ArrayList<Carta> personal = new ArrayList<>();
-        
+        String eleccion = "";
         while(b != 0){
             System.out.println("---------------------MENU---------------------");
             System.out.println("0. Salir.");
             System.out.println("1. Mostrar todas las cartas.");
             System.out.println("2. Guardar una carta a mi coleccion.");
             System.out.println("3. Contar y mostrar las cartas de mi mazo.");
-            System.out.println("4. Ordenar por tipo.");
+            System.out.println("4. Ordenar por tipo mi mazo.");
+            System.out.println("5. Ordenar coleccion por tipo.");
+            System.out.println("6. Mostrar tipo de carta ingresada.");
             System.out.println("");
             b = s.nextInt();
             System.out.println("----------------------------------------------");
@@ -77,7 +81,7 @@ public class HojaTrabajo6 {
                     c.mostrarCartas(hash);
                     break;
                 case 2:
-                    String eleccion = "";
+                    eleccion = "";
                     System.out.println("Escriba el nombre de la carta a guardar.");
                     eleccion = s.nextLine();
                     eleccion = s.nextLine();
@@ -93,8 +97,28 @@ public class HojaTrabajo6 {
                     break;
                 
                 case 4:
-                    c.ordenarMazo(personal);
+                    System.out.println(c.ordenarMazo(personal));
+                    
+//                    Collections.sort(personal, (Carta o1, Carta o2) -> o1.getTipo().compareTo(o2.getTipo()));
+//                    
+//                    for(Carta cc: personal){
+//                        System.out.println(cc.toString());
+//                    }
                     break;
+                case 5:
+                    System.out.println(c.ordenarColeccion(hash));
+                    break;
+                case 6:
+                    eleccion = "";
+                    System.out.println("Escriba el nombre de la carta a buscar.");
+                    eleccion = s.nextLine();
+                    eleccion = s.nextLine();
+                    
+                    if(c.buscarCarta(hash, eleccion) == true){
+                        System.out.println(c.mostrarTipo(eleccion, hash));
+                    }else{
+                        System.out.println("No hemos podido encontrar la carta solicitada.");
+                    }
                 default:
                     break;
             }
