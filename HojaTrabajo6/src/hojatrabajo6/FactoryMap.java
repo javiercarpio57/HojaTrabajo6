@@ -3,8 +3,9 @@ package hojatrabajo6;
 import java.util.*;
 
 /**
- *
- * @author javie
+ * @author Sergio Marchena
+ * @author Javier Carpio
+ * @version 05.03.2018
  */
 public class FactoryMap {
     

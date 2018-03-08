@@ -3,9 +3,6 @@ package hojatrabajo6;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -43,7 +40,6 @@ public class HojaTrabajo6 {
         }
         
         Map<Integer, Carta> hash = fm.FactoryMap(opcion);
-        
         File archivo = new File ("cards_desc.txt");
 
         FileReader fr = new FileReader (archivo);
@@ -56,7 +52,6 @@ public class HojaTrabajo6 {
             String line = scanner.nextLine();
             String nombre = line.substring(0, line.indexOf("|"));
             String tipo = line.substring(line.indexOf("|") + 1, line.length());
-            
             hash.put(a, new Carta(nombre, tipo));
         }
         
@@ -98,12 +93,6 @@ public class HojaTrabajo6 {
                 
                 case 4:
                     System.out.println(c.ordenarMazo(personal));
-                    
-//                    Collections.sort(personal, (Carta o1, Carta o2) -> o1.getTipo().compareTo(o2.getTipo()));
-//                    
-//                    for(Carta cc: personal){
-//                        System.out.println(cc.toString());
-//                    }
                     break;
                 case 5:
                     System.out.println(c.ordenarColeccion(hash));
@@ -119,6 +108,7 @@ public class HojaTrabajo6 {
                     }else{
                         System.out.println("No hemos podido encontrar la carta solicitada.");
                     }
+                    break;
                 default:
                     break;
             }
