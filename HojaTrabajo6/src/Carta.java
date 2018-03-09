@@ -1,6 +1,4 @@
 
-package hojatrabajo6;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
@@ -232,13 +230,5 @@ public class Carta {
             }
         }
         return info;
-    }
-    
-    public void mostrarCartas2(Map<String, String> map){
-        map.entrySet().forEach((carta) -> {
-            String clave = carta.getKey();
-            String valor = carta.getValue();
-            System.out.println(clave + ". " + valor.toString());
-        });
     }
 }

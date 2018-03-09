@@ -1,5 +1,4 @@
 
-package hojatrabajo6;
 import java.util.*;
 
 /**
