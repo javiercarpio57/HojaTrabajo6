@@ -40,6 +40,7 @@ public class HojaTrabajo6 {
         }
         
         Map<Integer, Carta> hash = fm.FactoryMap(opcion);
+        Map<String, String> hash2 = fm.FactoryMap(opcion);
         File archivo = new File ("cards_desc.txt");
 
         FileReader fr = new FileReader (archivo);
@@ -53,6 +54,10 @@ public class HojaTrabajo6 {
             String nombre = line.substring(0, line.indexOf("|"));
             String tipo = line.substring(line.indexOf("|") + 1, line.length());
             hash.put(a, new Carta(nombre, tipo));
+            hash2.put(nombre, tipo);
+            if(a == 8000){
+                break;
+            }
         }
         
         int b = 1;
@@ -109,6 +114,8 @@ public class HojaTrabajo6 {
                         System.out.println("No hemos podido encontrar la carta solicitada.");
                     }
                     break;
+                case 7:
+                    c.mostrarCartas2(hash2);
                 default:
                     break;
             }
